@@ -11,3 +11,7 @@ include:
     file: '/r4.2/gitlab-base.yml'
   - project: 'QubesOS/qubes-continuous-integration'
     file: '/r4.2/gitlab-host.yml'
+
+variables:
+  # this applies to submodules too
+  GIT_DEPTH: 250
