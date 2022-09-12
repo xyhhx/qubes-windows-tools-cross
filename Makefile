@@ -73,7 +73,11 @@ $(DEVCON):
 	git -C devcon.git config --local extensions.partialClone true
 	git -C devcon.git fetch --filter=blob:none --depth=1 origin $(DEVCON_COMMIT)
 	git -C devcon.git checkout $(DEVCON_COMMIT) setup/devcon
-	tar -czf $(DEVCON) -C devcon.git/setup devcon
+	tar -czf $(DEVCON) \
+		--sort=name \
+		--mtime="@$$(git -C devcon.git show -s --pretty=%ct $(DEVCON_COMMIT))" \
+		--mode=go=rX \
+		-C devcon.git/setup devcon
 
 get-sources: $(PVDRIVERS) $(BINARIES) $(DEVCON)
 get-sources:
