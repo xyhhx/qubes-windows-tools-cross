@@ -14,6 +14,7 @@ BuildRequires:	wine
 BuildRequires:	svn
 BuildRequires:	winetricks
 BuildRequires:  mono-core
+BuildRequires:  make
 BuildArch:	noarch
 
 # devcon tool from windows samples
