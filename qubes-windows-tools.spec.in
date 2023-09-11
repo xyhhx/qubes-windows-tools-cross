@@ -40,11 +40,11 @@ Source20:	qnetwork_setup.bat
 Source100:	Makefile
 
 # latest stable xen binary drivers
-Source21:	xenbus-%{xenpv_version}.tar
-Source22:	xeniface-%{xenpv_version}.tar
-Source23:	xenvif-%{xenpv_version}.tar
-Source24:	xennet-%{xenpv_version}.tar
-Source25:	xenvbd-%{xenpv_version}.tar
+Source21:	xenbus.tar
+Source22:	xeniface.tar
+Source23:	xenvif.tar
+Source24:	xennet.tar
+Source25:	xenvbd.tar
 
 Source26:	wix311-binaries.zip
 Source27:	dotNetFx40_Full_x86_x64.exe

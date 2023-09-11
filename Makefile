@@ -24,24 +24,22 @@ TARGETS=devcon.exe \
 
 OUTDIR=$(PWD)/bin/$(ARCH)
 
-PVDRIVERS_VERSION = 8.2.2
-
 ifneq ($(DISTFILES_MIRROR),)
 BASE_URL := $(DISTFILES_MIRROR)/qwt-crossbuild
 else
 BASE_URL = https://xenbits.xenproject.org/pvdrivers/win
 endif
 
-PVDRIVERS_URLS := $(BASE_URL)/$(PVDRIVERS_VERSION)/xenbus.tar \
-                $(BASE_URL)/$(PVDRIVERS_VERSION)/xeniface.tar \
-                $(BASE_URL)/$(PVDRIVERS_VERSION)/xenvbd.tar \
-                $(BASE_URL)/$(PVDRIVERS_VERSION)/xennet.tar \
-                $(BASE_URL)/$(PVDRIVERS_VERSION)/xenvif.tar
+PVDRIVERS_URLS := $(BASE_URL)/xenbus.tar \
+                $(BASE_URL)/xeniface.tar \
+                $(BASE_URL)/xenvbd.tar \
+                $(BASE_URL)/xennet.tar \
+                $(BASE_URL)/xenvif.tar
 
 PVDRIVERS_UPSTREAM := $(notdir $(PVDRIVERS_URLS))
-PVDRIVERS := $(patsubst %.tar,%-$(PVDRIVERS_VERSION).tar,$(PVDRIVERS_UPSTREAM))
+PVDRIVERS := $(patsubst %.tar,%.tar,$(PVDRIVERS_UPSTREAM))
 
-$(PVDRIVERS): %-$(PVDRIVERS_VERSION).tar:
+$(PVDRIVERS): %.tar:
 	echo $*
 	$(FETCH_CMD) $@.UNTRUSTED "$(filter %$*.tar,$(PVDRIVERS_URLS))"
 	sha512sum --status --strict -c <(printf "$(file <$@.sha512)  -\n") <$@.UNTRUSTED
